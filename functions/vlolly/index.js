@@ -7,6 +7,7 @@ const client = new faunadb.Client({
   secret: process.env.FAUNADB,
 })
 
+
 const typeDefs = gql`
   type Query {
     getLollies: [lolly]
