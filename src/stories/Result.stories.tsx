@@ -14,7 +14,7 @@ const Template: Story<ResultProps> = args => <Result {...args} />
 export const Primary = Template.bind({})
 Primary.args = {
   link: "some_link",
-  sender: "abc",
-  reciever: "xyz",
+  from: "abc",
+  to: "xyz",
   message: "Gift",
 }

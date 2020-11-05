@@ -9,11 +9,11 @@ import Result from "../components/result"
 import { ADD_LOLLY } from "../components/gql"
 
 const DisplayingErrorMessagesSchema = Yup.object().shape({
-  reciever: Yup.string()
+  to: Yup.string()
     .min(3, "Name must be atleast 3 characters long")
     .max(50, "Name must not exceed 50 characters")
     .required("Required"),
-  sender: Yup.string()
+  from: Yup.string()
     .required("Required")
     .min(2, "Name must be atleast 3 characters long")
     .max(50, "Name must not exceed 50 characters"),
@@ -23,34 +23,34 @@ const DisplayingErrorMessagesSchema = Yup.object().shape({
 })
 
 const Add = () => {
-  const [color1, setcolor1] = useState("#d52358")
-  const [color2, setcolor2] = useState("#e95946")
-  const [color3, setcolor3] = useState("#deaa43")
+  const [topFlavor, settopFlavor] = useState("#d52358")
+  const [middleFlavor, setmiddleFlavor] = useState("#e95946")
+  const [bottomFlavor, setbottomFlavor] = useState("#deaa43")
   const [addLolly, { data }] = useMutation(ADD_LOLLY)
 
   const formik = useFormik({
     initialValues: {
-      reciever: "",
-      sender: "",
+      to: "",
+      from: "",
       message: "",
     },
     validationSchema: DisplayingErrorMessagesSchema,
     onSubmit: (values, { resetForm }) => {
       addLolly({
         variables: {
-          color1,
-          color2,
-          color3,
-          reciever: values.reciever,
-          sender: values.sender,
+          topFlavor,
+          middleFlavor,
+          bottomFlavor,
+          to: values.to,
+          from: values.from,
           message: values.message,
         },
       })
 
       resetForm({
         values: {
-          reciever: "",
-          sender: "",
+          to: "",
+          from: "",
           message: "",
         },
       })
@@ -74,7 +74,7 @@ const Add = () => {
 
       <div className="lollyFormDiv">
         <div>
-          <Lolly top={color1} middle={color2} bottom={color3} />
+          <Lolly top={topFlavor} middle={middleFlavor} bottom={bottomFlavor} />
         </div>
         {!data ? (
           <>
@@ -83,12 +83,12 @@ const Add = () => {
               <label htmlFor="flavourTop" className="colorPickerLabel">
                 <input
                   type="color"
-                  value={color1}
+                  value={topFlavor}
                   className="colorPicker"
                   name="flavourTop"
                   id="flavourTop"
                   onChange={e => {
-                    setcolor1(e.target.value)
+                    settopFlavor(e.target.value)
                   }}
                 />
               </label>
@@ -96,24 +96,24 @@ const Add = () => {
               <label htmlFor="flavourTop" className="colorPickerLabel">
                 <input
                   type="color"
-                  value={color2}
+                  value={middleFlavor}
                   className="colorPicker"
                   name="flavourTop"
                   id="flavourTop"
                   onChange={e => {
-                    setcolor2(e.target.value)
+                    setmiddleFlavor(e.target.value)
                   }}
                 />
               </label>
               <label htmlFor="flavourTop" className="colorPickerLabel">
                 <input
                   type="color"
-                  value={color3}
+                  value={bottomFlavor}
                   className="colorPicker"
                   name="flavourTop"
                   id="flavourTop"
                   onChange={e => {
-                    setcolor3(e.target.value)
+                    setbottomFlavor(e.target.value)
                   }}
                 />
               </label>
@@ -122,15 +122,15 @@ const Add = () => {
               <label htmlFor="firstName">To</label>
               <br />{" "}
               <input
-                id="reciever"
-                name="reciever"
+                id="to"
+                name="to"
                 type="text"
                 placeholder="A lolly for..."
                 onChange={formik.handleChange}
-                value={formik.values.reciever}
+                value={formik.values.to}
               />
-              {formik.errors.reciever ? (
-                <div className="error">{formik.errors.reciever}</div>
+              {formik.errors.to ? (
+                <div className="error">{formik.errors.to}</div>
               ) : null}
               <br /> <label htmlFor="message">Message</label>
               <br />{" "}
@@ -145,18 +145,18 @@ const Add = () => {
               {formik.errors.message ? (
                 <div className="error">{formik.errors.message}</div>
               ) : null}
-              <label htmlFor="sender">From</label>
+              <label htmlFor="from">From</label>
               <br />
               <input
-                id="sender"
-                name="sender"
-                type="sender"
+                id="from"
+                name="from"
+                type="from"
                 onChange={formik.handleChange}
-                value={formik.values.sender}
+                value={formik.values.from}
                 placeholder="From your friend.."
               />
-              {formik.errors.sender ? (
-                <div className="error">{formik.errors.sender}</div>
+              {formik.errors.from ? (
+                <div className="error">{formik.errors.from}</div>
               ) : null}
               <div className="space-mob"></div>
               <button type="submit">Freeze this lolly and get a link</button>
@@ -165,8 +165,8 @@ const Add = () => {
         ) : (
           <Result
             link={data?.addLolly?.link}
-            reciever={data?.addLolly?.reciever}
-            sender={data?.addLolly?.sender}
+            to={data?.addLolly?.to}
+            from={data?.addLolly?.from}
             message={data?.addLolly?.message}
           />
         )}

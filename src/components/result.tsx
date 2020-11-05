@@ -3,20 +3,20 @@ import "../styles/Result.css"
 
 export interface ResultProps {
   link: string
-  reciever: string
+  to: string
   message: string
-  sender: string
+  from: string
 }
 
-const Result: React.FC<ResultProps> = ({ link, reciever, message, sender }) => {
+const Result: React.FC<ResultProps> = ({ link, to, message, from }) => {
   return (
     <div className="result">
       <h4>Share lolly with this link:</h4>
       <h3>{`https://virtual-lolly-faunadb.netlify.app/lolly/${link}`}</h3>
       <div className="result__details">
-        <p className="reciever">{reciever}</p>
+        <p className="to">{to}</p>
         <p className="message">{message}</p>
-        <p className="sender">____{sender}</p>
+        <p className="from">____{from}</p>
       </div>
     </div>
   )

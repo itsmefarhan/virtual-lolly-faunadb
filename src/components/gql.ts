@@ -2,23 +2,23 @@ import { gql } from "@apollo/client"
 
 export const ADD_LOLLY = gql`
   mutation addLolly(
-    $color1: String!
-    $color2: String!
-    $color3: String!
-    $reciever: String!
-    $sender: String!
+    $topFlavor: String!
+    $middleFlavor: String!
+    $bottomFlavor: String!
+    $to: String!
+    $from: String!
     $message: String!
   ) {
     addLolly(
-      color1: $color1
-      color2: $color2
-      color3: $color3
-      reciever: $reciever
-      sender: $sender
+      topFlavor: $topFlavor
+      middleFlavor: $middleFlavor
+      bottomFlavor: $bottomFlavor
+      to: $to
+      from: $from
       message: $message
     ) {
-      sender
-      reciever
+      from
+      to
       message
       link
     }
