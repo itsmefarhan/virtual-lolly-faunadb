@@ -13,21 +13,21 @@ const typeDefs = gql`
   }
   type lolly {
     id: ID!
-    color1: String!
-    color2: String!
-    color3: String!
-    sender: String!
-    reciever: String!
+    topFlavor: String!
+    middleFlavor: String!
+    bottomFlavor: String!
+    from: String!
+    to: String!
     message: String!
     link: String!
   }
   type Mutation {
     addLolly(
-      color1: String!
-      color2: String!
-      color3: String!
-      sender: String!
-      reciever: String!
+      topFlavor: String!
+      middleFlavor: String!
+      bottomFlavor: String!
+      from: String!
+      to: String!
       message: String!
     ): lolly
   }
@@ -39,7 +39,7 @@ const resolvers = {
       try {
         const result = await client.query(
           q.Map(
-            q.Paginate(q.Match(q.Index("lollypop"))),
+            q.Paginate(q.Match(q.Index("lolly"))),
             q.Lambda(x => q.Get(x))
           )
         )
@@ -49,11 +49,11 @@ const resolvers = {
           // console.log(item.ref.id)
           return {
             id: item.ref.id,
-            color1: item.data.color1,
-            color2: item.data.color2,
-            color3: item.data.color3,
-            reciever: item.data.reciever,
-            sender: item.data.sender,
+            topFlavor: item.data.topFlavor,
+            middleFlavor: item.data.middleFlavor,
+            bottomFlavor: item.data.bottomFlavor,
+            to: item.data.to,
+            from: item.data.from,
             message: item.data.message,
             link: item.data.link,
           }
@@ -66,24 +66,17 @@ const resolvers = {
   Mutation: {
     addLolly: async (
       _,
-      { color1, color2, color3, sender, reciever, message }
+      { topFlavor, middleFlavor, bottomFlavor, from, to, message }
     ) => {
-      console.log(
-        color1,
-        color2,
-        color3,
-        sender,
-        reciever,
-        message
-      )
+      console.log(topFlavor, middleFlavor, bottomFlavor, from, to, message)
       const result = await client.query(
         q.Create(q.Collection("lollypop"), {
           data: {
-            color1,
-            color2,
-            color3,
-            sender,
-            reciever,
+            topFlavor,
+            middleFlavor,
+            bottomFlavor,
+            from,
+            to,
             message,
             link: shortid.generate(),
           },
