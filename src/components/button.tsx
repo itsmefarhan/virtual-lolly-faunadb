@@ -5,6 +5,7 @@ export interface ButtonProps {
   label: string
   onClickFunc: () => void
 }
-export const Button: React.FC<ButtonProps> = ({ label, onClickFunc }) => {
+const Button: React.FC<ButtonProps> = ({ label, onClickFunc }) => {
   return <button onClick={onClickFunc}>{label}</button>
 }
+export default Button
