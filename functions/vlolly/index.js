@@ -4,7 +4,7 @@ const q = faunadb.query
 const shortid = require("shortid")
 
 const client = new faunadb.Client({
-  secret: "fnAD553-CRACBWRY90jsl4ON6g-yGzCN9YPT_IRg",
+  secret: process.env.FAUNADB,
 })
 
 const typeDefs = gql`
