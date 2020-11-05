@@ -10,20 +10,22 @@ import { ADD_LOLLY } from "../components/gql"
 
 const DisplayingErrorMessagesSchema = Yup.object().shape({
   reciever: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
+    .min(3, "Name must be atleast 3 characters long")
+    .max(50, "Name must not exceed 50 characters")
     .required("Required"),
   sender: Yup.string()
     .required("Required")
-    .min(2, "Too Short!")
-    .max(50, "Too Long!"),
-  message: Yup.string().required("Required").min(2, "Too Short"),
+    .min(2, "Name must be atleast 3 characters long")
+    .max(50, "Name must not exceed 50 characters"),
+  message: Yup.string()
+    .required("Required")
+    .min(5, "Message must be at least 5 characters long"),
 })
 
 const Add = () => {
-  const [color1, setColor1] = useState("#d52358")
-  const [color2, setColor2] = useState("#e95946")
-  const [color3, setColor3] = useState("#deaa43")
+  const [topFlavor, settopFlavor] = useState("#d52358")
+  const [middleFlavor, setmiddleFlavor] = useState("#e95946")
+  const [bottomFlavor, setbottomFlavor] = useState("#deaa43")
   const [addLolly, { data }] = useMutation(ADD_LOLLY)
 
   const formik = useFormik({
@@ -36,9 +38,9 @@ const Add = () => {
     onSubmit: (values, { resetForm }) => {
       addLolly({
         variables: {
-          color1,
-          color2,
-          color3,
+          topFlavor,
+          middleFlavor,
+          bottomFlavor,
           reciever: values.reciever,
           sender: values.sender,
           message: values.message,
@@ -54,17 +56,17 @@ const Add = () => {
       })
     },
   })
-  useEffect(() => {
-    async function runHook() {
-      const response = await fetch(
-        "https://api.netlify.com/build_hooks/5f9a99467867c005d354dcb7",
-        {
-          method: "POST",
-        }
-      )
-    }
-    runHook()
-  }, [data])
+  // useEffect(() => {
+  //   async function runHook() {
+  //     const response = await fetch(
+  //       "https://api.netlify.com/build_hooks/5f9a99467867c005d354dcb7",
+  //       {
+  //         method: "POST",
+  //       }
+  //     )
+  //   }
+  //   runHook()
+  // }, [data])
 
   return (
     <div className="create">
@@ -72,7 +74,7 @@ const Add = () => {
 
       <div className="lollyFormDiv">
         <div>
-          <Lolly top={color1} middle={color2} bottom={color3} />
+          <Lolly top={topFlavor} middle={middleFlavor} bottom={bottomFlavor} />
         </div>
         {!data ? (
           <>
@@ -81,12 +83,12 @@ const Add = () => {
               <label htmlFor="flavourTop" className="colorPickerLabel">
                 <input
                   type="color"
-                  value={color1}
+                  value={topFlavor}
                   className="colorPicker"
                   name="flavourTop"
                   id="flavourTop"
                   onChange={e => {
-                    setColor1(e.target.value)
+                    settopFlavor(e.target.value)
                   }}
                 />
               </label>
@@ -94,24 +96,24 @@ const Add = () => {
               <label htmlFor="flavourTop" className="colorPickerLabel">
                 <input
                   type="color"
-                  value={color2}
+                  value={middleFlavor}
                   className="colorPicker"
                   name="flavourTop"
                   id="flavourTop"
                   onChange={e => {
-                    setColor2(e.target.value)
+                    setmiddleFlavor(e.target.value)
                   }}
                 />
               </label>
               <label htmlFor="flavourTop" className="colorPickerLabel">
                 <input
                   type="color"
-                  value={color3}
+                  value={bottomFlavor}
                   className="colorPicker"
                   name="flavourTop"
                   id="flavourTop"
                   onChange={e => {
-                    setColor3(e.target.value)
+                    setbottomFlavor(e.target.value)
                   }}
                 />
               </label>

@@ -7,16 +7,15 @@ const client = new faunadb.Client({
   secret: process.env.FAUNADB,
 })
 
-
 const typeDefs = gql`
   type Query {
     getLollies: [lolly]
   }
   type lolly {
     id: ID!
-    color1: String!
-    color2: String!
-    color3: String!
+    topFlavor: String!
+    middleFlavor: String!
+    bottomFlavor: String!
     sender: String!
     reciever: String!
     message: String!
@@ -24,9 +23,9 @@ const typeDefs = gql`
   }
   type Mutation {
     addLolly(
-      color1: String!
-      color2: String!
-      color3: String!
+      topFlavor: String!
+      middleFlavor: String!
+      bottomFlavor: String!
       sender: String!
       reciever: String!
       message: String!
@@ -40,7 +39,7 @@ const resolvers = {
       try {
         const result = await client.query(
           q.Map(
-            q.Paginate(q.Documents(q.Collection("lollypop"))),
+            q.Paginate(q.Match(q.Index("lollypop"))),
             q.Lambda(x => q.Get(x))
           )
         )
@@ -50,9 +49,9 @@ const resolvers = {
           // console.log(item.ref.id)
           return {
             id: item.ref.id,
-            color1: item.data.color1,
-            color2: item.data.color2,
-            color3: item.data.color3,
+            topFlavor: item.data.topFlavor,
+            middleFlavor: item.data.middleFlavor,
+            bottomFlavor: item.data.bottomFlavor,
             reciever: item.data.reciever,
             sender: item.data.sender,
             message: item.data.message,
@@ -67,15 +66,22 @@ const resolvers = {
   Mutation: {
     addLolly: async (
       _,
-      { color1, color2, color3, sender, reciever, message }
+      { topFlavor, middleFlavor, bottomFlavor, sender, reciever, message }
     ) => {
-      console.log(color1, color2, color3, sender, reciever, message)
+      console.log(
+        topFlavor,
+        middleFlavor,
+        bottomFlavor,
+        sender,
+        reciever,
+        message
+      )
       const result = await client.query(
         q.Create(q.Collection("lollypop"), {
           data: {
-            color1,
-            color2,
-            color3,
+            topFlavor,
+            middleFlavor,
+            bottomFlavor,
             sender,
             reciever,
             message,
