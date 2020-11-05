@@ -13,9 +13,9 @@ const typeDefs = gql`
   }
   type lolly {
     id: ID!
-    topFlavor: String!
-    middleFlavor: String!
-    bottomFlavor: String!
+    color1: String!
+    color2: String!
+    color3: String!
     sender: String!
     reciever: String!
     message: String!
@@ -23,9 +23,9 @@ const typeDefs = gql`
   }
   type Mutation {
     addLolly(
-      topFlavor: String!
-      middleFlavor: String!
-      bottomFlavor: String!
+      color1: String!
+      color2: String!
+      color3: String!
       sender: String!
       reciever: String!
       message: String!
@@ -49,9 +49,9 @@ const resolvers = {
           // console.log(item.ref.id)
           return {
             id: item.ref.id,
-            topFlavor: item.data.topFlavor,
-            middleFlavor: item.data.middleFlavor,
-            bottomFlavor: item.data.bottomFlavor,
+            color1: item.data.color1,
+            color2: item.data.color2,
+            color3: item.data.color3,
             reciever: item.data.reciever,
             sender: item.data.sender,
             message: item.data.message,
@@ -66,12 +66,12 @@ const resolvers = {
   Mutation: {
     addLolly: async (
       _,
-      { topFlavor, middleFlavor, bottomFlavor, sender, reciever, message }
+      { color1, color2, color3, sender, reciever, message }
     ) => {
       console.log(
-        topFlavor,
-        middleFlavor,
-        bottomFlavor,
+        color1,
+        color2,
+        color3,
         sender,
         reciever,
         message
@@ -79,9 +79,9 @@ const resolvers = {
       const result = await client.query(
         q.Create(q.Collection("lollypop"), {
           data: {
-            topFlavor,
-            middleFlavor,
-            bottomFlavor,
+            color1,
+            color2,
+            color3,
             sender,
             reciever,
             message,

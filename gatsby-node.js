@@ -6,9 +6,9 @@ exports.createPages = async ({ graphql, actions }) => {
     {
       get_lollies {
         getLollies {
-          topFlavor
-          middleFlavor
-          bottomFlavor
+          color1
+          color2
+          color3
           link
           sender
           reciever
@@ -23,9 +23,9 @@ exports.createPages = async ({ graphql, actions }) => {
       path: `lolly/${node.link}`,
       component: path.resolve("./src/templates/lollytemplate.tsx"),
       context: {
-        topFlavor: node.topFlavor,
-        middleFlavor: node.middleFlavor,
-        bottomFlavor: node.bottomFlavor,
+        color1: node.color1,
+        color2: node.color2,
+        color3: node.color3,
         link: node.link,
         message: node.message,
         sender: node.sender,

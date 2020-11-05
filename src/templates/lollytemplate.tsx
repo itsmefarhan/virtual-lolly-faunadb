@@ -3,23 +3,27 @@ import Header from "../components/header"
 import { Lolly } from "../components/Lolly"
 import Result from "../components/result"
 
-const LollyTemplate = ({
+interface Props {
   pageContext: {
-    topFlavor,
-    middleFlavor,
-    bottomFlavor,
-    reciever,
-    sender,
-    message,
-    link,
-  },
-}: any) => {
+    color1: string
+    color2: string
+    color3: string
+    reciever: string
+    sender: string
+    message: string
+    link: string
+  }
+}
+
+const LollyTemplate = ({
+  pageContext: { color1, color2, color3, reciever, sender, message, link },
+}: Props) => {
   return (
     <div>
       <Header />
       <div className="lollyFormDiv">
         <div>
-          <Lolly top={topFlavor} middle={middleFlavor} bottom={bottomFlavor} />
+          <Lolly top={color1} middle={color2} bottom={color3} />
         </div>
 
         <Result

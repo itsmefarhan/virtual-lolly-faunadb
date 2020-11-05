@@ -23,9 +23,9 @@ const DisplayingErrorMessagesSchema = Yup.object().shape({
 })
 
 const Add = () => {
-  const [topFlavor, settopFlavor] = useState("#d52358")
-  const [middleFlavor, setmiddleFlavor] = useState("#e95946")
-  const [bottomFlavor, setbottomFlavor] = useState("#deaa43")
+  const [color1, setcolor1] = useState("#d52358")
+  const [color2, setcolor2] = useState("#e95946")
+  const [color3, setcolor3] = useState("#deaa43")
   const [addLolly, { data }] = useMutation(ADD_LOLLY)
 
   const formik = useFormik({
@@ -38,9 +38,9 @@ const Add = () => {
     onSubmit: (values, { resetForm }) => {
       addLolly({
         variables: {
-          topFlavor,
-          middleFlavor,
-          bottomFlavor,
+          color1,
+          color2,
+          color3,
           reciever: values.reciever,
           sender: values.sender,
           message: values.message,
@@ -74,7 +74,7 @@ const Add = () => {
 
       <div className="lollyFormDiv">
         <div>
-          <Lolly top={topFlavor} middle={middleFlavor} bottom={bottomFlavor} />
+          <Lolly top={color1} middle={color2} bottom={color3} />
         </div>
         {!data ? (
           <>
@@ -83,12 +83,12 @@ const Add = () => {
               <label htmlFor="flavourTop" className="colorPickerLabel">
                 <input
                   type="color"
-                  value={topFlavor}
+                  value={color1}
                   className="colorPicker"
                   name="flavourTop"
                   id="flavourTop"
                   onChange={e => {
-                    settopFlavor(e.target.value)
+                    setcolor1(e.target.value)
                   }}
                 />
               </label>
@@ -96,24 +96,24 @@ const Add = () => {
               <label htmlFor="flavourTop" className="colorPickerLabel">
                 <input
                   type="color"
-                  value={middleFlavor}
+                  value={color2}
                   className="colorPicker"
                   name="flavourTop"
                   id="flavourTop"
                   onChange={e => {
-                    setmiddleFlavor(e.target.value)
+                    setcolor2(e.target.value)
                   }}
                 />
               </label>
               <label htmlFor="flavourTop" className="colorPickerLabel">
                 <input
                   type="color"
-                  value={bottomFlavor}
+                  value={color3}
                   className="colorPicker"
                   name="flavourTop"
                   id="flavourTop"
                   onChange={e => {
-                    setbottomFlavor(e.target.value)
+                    setcolor3(e.target.value)
                   }}
                 />
               </label>
