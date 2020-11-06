@@ -13,7 +13,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `)
-  console.log("gatsby-node", data)
+
   data.GetLollies.getLollies.forEach(lolly => {
     createPage({
       component: lollyTemplate,
@@ -23,4 +23,16 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
+}
+
+exports.onCreatePage = async ({ page, actions }) => {
+  const { createPage } = actions
+
+  if (page.path.match(/^\/lolly/)) {
+    page.matchPath = "/lolly/*"
+
+    // Update the page.
+
+    createPage(page)
+  }
 }
