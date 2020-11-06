@@ -4,7 +4,7 @@
 
 //   const { data } = await graphql(`
 //     query MyQuery {
-//       get_lollies {
+//       GetLollies {
 //         getLollies {
 //           link
 //         }
@@ -12,7 +12,7 @@
 //     }
 //   `)
 
-//   data.get_lollies.getLollies.forEach(({ link }) => {
+//   data.GetLollies.getLollies.forEach(({ link }) => {
 //     createPage({
 //       path: `lolly/${link}`,
 //       component: path.resolve("./src/templates/lollytemplate.tsx"),

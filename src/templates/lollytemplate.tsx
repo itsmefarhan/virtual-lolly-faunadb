@@ -20,7 +20,7 @@
 
 // export const query = graphql`
 //   query MyQuery($link: String!) {
-//     get_lollies {
+//     GetLollies {
 //       getLolly(link: $link) {
 //         topFlavor
 //         middleFlavor
@@ -41,17 +41,17 @@
 //       <div className="lollyFormDiv">
 //         <div>
 //           <Lolly
-//             top={data.get_lollies.getLolly.topFlavor}
-//             middle={data.get_lollies.getLolly.middleFlavor}
-//             bottom={data.get_lollies.getLolly.bottomFlavor}
+//             top={data.GetLollies.getLolly.topFlavor}
+//             middle={data.GetLollies.getLolly.middleFlavor}
+//             bottom={data.GetLollies.getLolly.bottomFlavor}
 //           />
 //         </div>
 
 //         <Result
-//           link={data.get_lollies.getLolly.link}
-//           to={data.get_lollies.getLolly.to}
-//           from={data.get_lollies.getLolly.from}
-//           message={data.get_lollies.getLolly.message}
+//           link={data.GetLollies.getLolly.link}
+//           to={data.GetLollies.getLolly.to}
+//           from={data.GetLollies.getLolly.from}
+//           message={data.GetLollies.getLolly.message}
 //         />
 //       </div>
 //     </div>
