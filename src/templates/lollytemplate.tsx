@@ -36,25 +36,29 @@ interface Props {
   }
 }
 
-const LollyTemplate = ({ data }: Props) => {
-  console.log("temp", data)
+const LollyTemplate = ({
+  data: {
+    GetLollies: { getLolly },
+  },
+}: Props) => {
+  console.log("temp", getLolly)
   return (
     <div>
       <Header />
       <div className="lollyFormDiv">
         <div>
           <Lolly
-            top={data.GetLollies.getLolly.topFlavor}
-            middle={data.GetLollies.getLolly.middleFlavor}
-            bottom={data.GetLollies.getLolly.bottomFlavor}
+            top={getLolly.topFlavor}
+            middle={getLolly.middleFlavor}
+            bottom={getLolly.bottomFlavor}
           />
         </div>
 
         <Result
-          link={data.GetLollies.getLolly.link}
-          to={data.GetLollies.getLolly.to}
-          from={data.GetLollies.getLolly.from}
-          message={data.GetLollies.getLolly.message}
+          link={getLolly.link}
+          to={getLolly.to}
+          from={getLolly.from}
+          message={getLolly.message}
         />
       </div>
     </div>

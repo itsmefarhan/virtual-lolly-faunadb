@@ -2,6 +2,8 @@ const path = require("path")
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
+  const lollyTemplate = path.resolve("./src/templates/lollytemplate.tsx")
+
   const { data } = await graphql(`
     query MyQuery {
       GetLollies {
@@ -12,12 +14,12 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
   console.log("gatsby-node", data)
-  data.GetLollies.getLollies.forEach(({ link }) => {
+  data.GetLollies.getLollies.forEach(lolly => {
     createPage({
-      path: `lolly/${link}`,
-      component: path.resolve("./src/templates/lollytemplate.tsx"),
+      component: lollyTemplate,
+      path: `lolly/${lolly.link}`,
       context: {
-        link: link,
+        link: lolly.link,
       },
     })
   })

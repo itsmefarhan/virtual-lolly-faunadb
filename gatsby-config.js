@@ -7,6 +7,18 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
+      resolve: "gatsby-source-graphql",
+      options: {
+        // This type will contain remote schema Query type
+        typeName: "GSG",
+        // This is field under which it's accessible
+        fieldName: "GetLollies",
+        // Url to query from
+        url:
+          "https://virtual-lolly-faunadb.netlify.app/.netlify/functions/vlolly",
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
@@ -31,18 +43,5 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
     "gatsby-plugin-typescript",
-    {
-      resolve: "gatsby-source-graphql",
-      options: {
-        // This type will contain remote schema Query type
-        typeName: "GSG",
-        // This is field under which it's accessible
-        fieldName: "GetLollies",
-        // Url to query from
-        url:
-          "https://virtual-lolly-faunadb.netlify.app/.netlify/functions/vlolly",
-      },
-    },
-
   ],
 }
