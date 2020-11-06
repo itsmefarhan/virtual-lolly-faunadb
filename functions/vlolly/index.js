@@ -10,6 +10,7 @@ const client = new faunadb.Client({
 const typeDefs = gql`
   type Query {
     getLollies: [lolly]
+    getLolly(link: String!): Lolly
   }
   type lolly {
     id: ID!
@@ -39,7 +40,7 @@ const resolvers = {
       try {
         const result = await client.query(
           q.Map(
-            q.Paginate(q.Match(q.Index("lolly"))),
+            q.Paginate(q.Match(q.Index("lollies"))),
             q.Lambda(x => q.Get(x))
           )
         )
@@ -60,6 +61,16 @@ const resolvers = {
         })
       } catch (err) {
         console.log(err)
+      }
+    },
+    getLolly: async (_, { link }) => {
+      try {
+        const result = await Client.query(
+          q.Get(q.Match(q.Index("get_lolly"), link))
+        )
+        return result.data
+      } catch (error) {
+        console.log(error)
       }
     },
   },
