@@ -1,43 +1,57 @@
-// import React from "react"
-// import Header from "../components/header"
-// import { Lolly } from "../components/Lolly"
-// import Result from "../components/result"
+import React from "react"
+import Header from "../components/header"
+import { Lolly } from "../components/Lolly"
+import Result from "../components/result"
+import { graphql } from "gatsby"
 
-// interface Props {
-//   pageContext: {
-//     topFlavor: string
-//     middleFlavor: string
-//     bottomFlavor: string
-//     to: string
-//     from: string
-//     message: string
-//     link: string
-//   }
-// }
+interface Props {
+  data: {
+    topFlavor: string
+    middleFlavor: string
+    bottomFlavor: string
+    to: string
+    from: string
+    message: string
+    link: string
+  }
+}
 
-// const LollyTemplate = ({
-//   pageContext: {
-//     topFlavor,
-//     middleFlavor,
-//     bottomFlavor,
-//     to,
-//     from,
-//     message,
-//     link,
-//   },
-// }: Props) => {
-//   return (
-//     <div>
-//       <Header />
-//       <div className="lollyFormDiv">
-//         <div>
-//           <Lolly top={topFlavor} middle={middleFlavor} bottom={bottomFlavor} />
-//         </div>
+export const query = graphql`
+  query GetLolly($link: String!) {
+    getLolly(link: $link) {
+      topFlavor
+      middleFlavor
+      bottomFlavor
+      to
+      from
+      message
+      link
+    }
+  }
+`
 
-//         <Result link={link} to={to} from={from} message={message} />
-//       </div>
-//     </div>
-//   )
-// }
+const LollyTemplate = ({ data }: Props) => {
+  return (
+    <div>
+      <Header />
+      <div className="lollyFormDiv">
+        <div>
+          <Lolly
+            top={data.topFlavor}
+            middle={data.middleFlavor}
+            bottom={data.bottomFlavor}
+          />
+        </div>
 
-// export default LollyTemplate
+        <Result
+          link={data.link}
+          to={data.to}
+          from={data.from}
+          message={data.message}
+        />
+      </div>
+    </div>
+  )
+}
+
+export default LollyTemplate
