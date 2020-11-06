@@ -37,6 +37,7 @@ interface Props {
 }
 
 const LollyTemplate = ({ data }: Props) => {
+  console.log("temp", data)
   return (
     <div>
       <Header />

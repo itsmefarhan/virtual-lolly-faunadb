@@ -11,7 +11,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `)
-
+  console.log("gatsby-node", data)
   data.GetLollies.getLollies.forEach(({ link }) => {
     createPage({
       path: `lolly/${link}`,
