@@ -5,11 +5,11 @@ import {
   HttpLink,
   InMemoryCache,
 } from "@apollo/client"
-import fetch from "isomorphic-fetch"
+import fetch from "cross-fetch"
 
 const client = new ApolloClient({
   link: new HttpLink({
-    uri: "https://virtual-lolly-faunadb.netlify.app/.netlify/functions/vlolly",
+    uri: "/.netlify/functions/vlolly",
     fetch,
   }),
   cache: new InMemoryCache(),
