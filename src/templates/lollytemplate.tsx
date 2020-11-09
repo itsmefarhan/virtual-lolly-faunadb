@@ -45,7 +45,7 @@ const LollyTemplate = ({
   return (
     <div>
       <Header />
-      <div className="lollyFormDiv">
+      <div className="vlform">
         <div>
           <Lolly
             top={getLolly.topFlavor}

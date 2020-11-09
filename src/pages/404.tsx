@@ -30,7 +30,7 @@ const NotFoundPage = ({ location }: any) => {
       {loading ? (
         <h3>Loading...</h3>
       ) : !!data && loc === "/lolly/" ? (
-        <div className="lollyFormDiv">
+        <div className="vlform">
           <div>
             <Lolly
               top={data.getLolly.topFlavor}

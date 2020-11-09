@@ -72,14 +72,14 @@ const Add = () => {
     <div className="create">
       <Header />
 
-      <div className="lollyFormDiv">
+      <div className="vlform">
         <div>
           <Lolly top={topFlavor} middle={middleFlavor} bottom={bottomFlavor} />
         </div>
         {!data ? (
           <>
             {" "}
-            <div className="lollyFlavourDiv">
+            <div className="vlflavor">
               <label htmlFor="flavourTop" className="colorPickerLabel">
                 <input
                   type="color"

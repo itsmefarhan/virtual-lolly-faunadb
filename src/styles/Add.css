@@ -1,4 +1,4 @@
-.lollyFlavourDiv {
+.vlflavor {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,7 +10,7 @@
   width: 80%;
   margin: auto;
 }
-.lollyFormDiv {
+.vlform {
   display: flex;
   justify-content: space-around;
   margin-top: 5rem;
@@ -62,17 +62,15 @@ textarea {
   display: none;
 }
 @media (max-width: 425px) {
-  .lollyFlavourDiv {
+  .vlflavor {
     display: flex;
-    flex-direction: row;
-    /* justify-content: center; */
+    flex-direction: row;    
   }
-  .lollyFormDiv {
+  .vlform {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    /* margin-top: 5rem; */
+    justify-content: space-between;    
   }
   .form-container {
     justify-content: space-between;

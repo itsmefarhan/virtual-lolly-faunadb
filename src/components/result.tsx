@@ -13,7 +13,7 @@ const Result: React.FC<ResultProps> = ({ link, to, message, from }) => {
     <div className="result">
       <h4>Share lolly with this link:</h4>
       <h3>{`https://virtual-lolly-faunadb.netlify.app/lolly/${link}`}</h3>
-      <div className="result__details">
+      <div className="res_detail">
         <p className="to">{to}</p>
         <p className="message">{message}</p>
         <p className="from">____{from}</p>
