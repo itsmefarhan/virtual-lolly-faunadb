@@ -54,7 +54,7 @@ const Add = () => {
           message: "",
         },
       })
-      fetch("https://api.netlify.com/build_hooks/5fac03d34e09380e164ff08b", {
+      fetch("https://api.netlify.com/build_hooks/5fac060eb6c1780f98915f15", {
         method: "POST",
       })
         .then(() => console.log("hook ran"))
