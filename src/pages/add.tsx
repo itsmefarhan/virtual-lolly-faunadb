@@ -36,6 +36,7 @@ const Add = () => {
     },
     validationSchema: DisplayingErrorMessagesSchema,
     onSubmit: (values, { resetForm }) => {
+    
       addLolly({
         variables: {
           topFlavor,
@@ -54,19 +55,9 @@ const Add = () => {
           message: "",
         },
       })
-    },
+      // Hook will go here
+    },    
   })
-  // useEffect(() => {
-  //   async function runHook() {
-  //     const response = await fetch(
-  //       "https://api.netlify.com/build_hooks/5f9a99467867c005d354dcb7",
-  //       {
-  //         method: "POST",
-  //       }
-  //     )
-  //   }
-  //   runHook()
-  // }, [data])
 
   return (
     <div className="create">
