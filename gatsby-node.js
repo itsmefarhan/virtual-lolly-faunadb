@@ -1,38 +1,39 @@
-// const path = require("path")
-// exports.createPages = async ({ graphql, actions }) => {
-//   const { createPage } = actions
+const path = require("path")
 
-//   const lollyTemplate = path.resolve("./src/templates/lollytemplate.tsx")
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions
 
-//   const { data } = await graphql(`
-//     query MyQuery {
-//       GetLollies {
-//         getLollies {
-//           link
-//         }
-//       }
-//     }
-//   `)
+  const lollyTemplate = path.resolve("./src/templates/lollytemplate.tsx")
 
-//   data.GetLollies.getLollies.forEach(lolly => {
-//     createPage({
-//       component: lollyTemplate,
-//       path: `lolly/${lolly.link}`,
-//       context: {
-//         link: lolly.link,
-//       },
-//     })
-//   })
-// }
+  const { data } = await graphql(`
+    {
+      GetLollies {
+        getLollies {
+          link
+          topFlavor
+          middleFlavor
+          bottomFlavor
+          to
+          from
+          message
+        }
+      }
+    }
+  `)
 
-// exports.onCreatePage = async ({ page, actions }) => {
-//   const { createPage } = actions
-
-//   if (page.path.match(/^\/lolly/)) {
-//     page.matchPath = "/lolly/*"
-
-//     // Update the page.
-
-//     createPage(page)
-//   }
-// }
+  data.GetLollies.getLollies.forEach(lolly => {
+    createPage({
+      component: lollyTemplate,
+      path: `lolly/${lolly.link}`,
+      context: {
+        link: lolly.link,
+        topFlavor: lolly.topFlavor,
+        middleFlavor: lolly.middleFlavor,
+        bottomFlavor: lolly.bottomFlavor,
+        to: lolly.to,
+        from: lolly.from,
+        message: lolly.message,
+      },
+    })
+  })
+}

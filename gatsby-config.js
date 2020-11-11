@@ -5,18 +5,18 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
-    // {
-    //   resolve: "gatsby-source-graphql",
-    //   options: {
-    //     // This type will contain remote schema Query type
-    //     typeName: "GSG",
-    //     // This is field under which it's accessible
-    //     fieldName: "GetLollies",
-    //     // Url to query from
-    //     url:
-    //       "https://virtual-lolly-faunadb.netlify.app/.netlify/functions/vlolly",
-    //   },
-    // },
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        // This type will contain remote schema Query type
+        typeName: "GSG",
+        // This is field under which it's accessible
+        fieldName: "GetLollies",
+        // Url to query from
+        url:
+          "https://zealous-panini-1a8744.netlify.app/.netlify/functions/vlolly",
+      },
+    },
 
     {
       resolve: `gatsby-plugin-manifest`,
